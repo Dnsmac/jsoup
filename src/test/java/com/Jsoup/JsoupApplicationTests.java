@@ -16,13 +16,15 @@ public class JsoupApplicationTests {
     private DealerMain dealerMain;
 	@Test
 	public void contextLoads() {
-	    for (int i = 0; i < 1675; i++) {
-	        try {
-	            dealerMain.save("china", i++);
-	            Thread.sleep(1000L);
-            } catch (Exception e) {
+	        int i = 1;
+	        while (i<1675) {
+	            i++;
+	            try {
+	                dealerMain.save("china", i++);
+	                Thread.sleep(1000L);
+	            } catch (Exception e) {
+	            }
             }
-        }
 	}
 
 }

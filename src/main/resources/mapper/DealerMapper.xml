@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Jsoup.dao.DealerMapper" >
+
+    <resultMap id="BaseResultMap" type="com.Jsoup.model.Dealer" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+        <result column="dealer_name" property="dealerName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="promotion" property="promotion" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, shop_name, dealer_name, phone, address, promotion
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from dealer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from dealer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.Jsoup.model.Dealer" >
+        insert into dealer (id, shop_name, dealer_name, 
+            phone, address, promotion
+            )
+        values (#{id,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{dealerName,jdbcType=VARCHAR}, 
+            #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{promotion,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.Jsoup.model.Dealer" >
+        insert into dealer
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="shopName != null" >
+                shop_name,
+            </if>
+            <if test="dealerName != null" >
+                dealer_name,
+            </if>
+            <if test="phone != null" >
+                phone,
+            </if>
+            <if test="address != null" >
+                address,
+            </if>
+            <if test="promotion != null" >
+                promotion,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="shopName != null" >
+                #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="dealerName != null" >
+                #{dealerName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="promotion != null" >
+                #{promotion,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.Jsoup.model.Dealer" >
+        update dealer
+        <set >
+            <if test="shopName != null" >
+                shop_name = #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="dealerName != null" >
+                dealer_name = #{dealerName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="promotion != null" >
+                promotion = #{promotion,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.Jsoup.model.Dealer" >
+        update dealer
+        set shop_name = #{shopName,jdbcType=VARCHAR},
+            dealer_name = #{dealerName,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            address = #{address,jdbcType=VARCHAR},
+            promotion = #{promotion,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

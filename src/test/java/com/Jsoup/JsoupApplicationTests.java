@@ -20,7 +20,7 @@ public class JsoupApplicationTests {
 	        while (i<1675) {
 	
 	            try {
-	                dealerMain.save("china", i++);
+	                dealerMain.save("china", i);
 	                Thread.sleep(1000L);
 	            } catch (Exception e) {
 	            }

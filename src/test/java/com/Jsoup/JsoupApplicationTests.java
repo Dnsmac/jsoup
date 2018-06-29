@@ -18,12 +18,13 @@ public class JsoupApplicationTests {
 	public void contextLoads() {
 	        int i = 1;
 	        while (i<1675) {
-	            i++;
+	
 	            try {
 	                dealerMain.save("china", i++);
 	                Thread.sleep(1000L);
 	            } catch (Exception e) {
 	            }
+	            i++;
             }
 	}
 
